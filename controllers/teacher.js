@@ -16,4 +16,21 @@ module.exports.addQuiz = (req, res, next) => {
       console.error(err);
       res.status(500).json({ error: 'Internal Server Error' });
     });
+
+};
+
+module.exports.deleteQuiz = (req, res, next) => {
+  const quizId = req.params.id;
+
+  Quiz.findByIdAndDelete(quizId)
+    .then((quiz) => {
+      if (!quiz) {
+        return res.status(404).json({ error: 'Quiz not found' });
+      }
+      res.json({ message: 'Quiz deleted successfully', deletedQuiz: quiz });
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).json({ error: 'Internal Server Error' });
+    });
 };

@@ -7,5 +7,5 @@ const teacherController = require('../controllers/teacher');
 
 // Route to add a quiz
 router.post('/addquiz', teacherController.addQuiz);
-
+router.delete('/:id', qteacherController.deleteQuiz);
 module.exports = router;
