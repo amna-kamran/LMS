@@ -30,6 +30,10 @@ const quizSchema = new mongoose.Schema({
       },
     },
   ],
+  attempted: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const Quiz = mongoose.model('Quiz', quizSchema);

@@ -10,7 +10,7 @@ var mongoose = require("mongoose"); // Add mongoose
 // var indexRouter = require("./routes/index");
 // var usersRouter = require("./routes/users");
 
-var teachersRouter = require("./routes/teachers");
+var teachersRouter = require("./routes/teacher");
 
 var app = express();
 
