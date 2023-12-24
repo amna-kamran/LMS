@@ -1,26 +1,57 @@
-const express = require("express");
-const mongoose = require("mongoose");
+var createError = require("http-errors");
+var express = require("express");
+var path = require("path");
+var cookieParser = require("cookie-parser");
+var logger = require("morgan");
+var mongoose = require("mongoose"); // Add mongoose
 
-// Define all routers here
+//define the routers
+//e.g
+// var indexRouter = require("./routes/index");
+// var usersRouter = require("./routes/users");
 
-const app = express();
-const PORT = 3000;
+var app = express();
+
+// MongoDB Connection
 const uri =
   "mongodb+srv://amnakamran139:vgDCvSZfo8XtnrAB@cluster0.qg8esqx.mongodb.net/?retryWrites=true&w=majority";
-
 mongoose
-  .connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => {
-    console.log("Connected to MongoDB");
-  })
-  .catch((err) => {
-    console.warn("An error occured", err);
-  });
+  .connect(uri)
+  .then(() => console.log("Connected to MongoDB"))
+  .catch((err) => console.warn("An error occurred", err));
 
-app.listen(PORT, async (error) => {
-  if (!error) console.log("Server is Successfully Running on " + PORT);
-  else console.warn("Error occurred, server can't start", error);
+// view engine setup
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "jade");
+
+app.use(logger("dev"));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, "public")));
+
+//define the usage of the routers
+//e.g
+// app.use("/", indexRouter);
+// app.use("/users", usersRouter);
+
+// catch 404 and forward to error handler
+app.use(function (req, res, next) {
+  next(createError(404));
 });
 
-app.use(express.json());
-// Define the usage of all routers here
+// error handler
+app.use(function (err, req, res, next) {
+  res.locals.message = err.message;
+  res.locals.error = req.app.get("env") === "development" ? err : {};
+  res.status(err.status || 500);
+  res.render("error");
+});
+
+// Server Listening
+const PORT = 3000;
+app.listen(PORT, () =>
+  console.log(`Server is Successfully Running on ${PORT}`)
+);
+
+module.exports = app;
