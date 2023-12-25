@@ -40,29 +40,4 @@ const Quiz = mongoose.model('Quiz', quizSchema);
 
 module.exports = Quiz;
 
-// FOR TESTING
-// {
-//     "createdBy": "teacherId",  
-//     "title": "Sample Quiz",
-//     "questions": [
-//       {
-//         "questionText": "What is 2 + 2?",
-//         "options": [
-//           {
-//             "text": "3"
-//           },
-//           {
-//             "text": "4"
-//           },
-//           {
-//             "text": "5"
-//           },
-//           {
-//             "text": "6"
-//           }
-//         ],
-//         "correctOption": 1
-//       },
-//     ]
-//   }
   
