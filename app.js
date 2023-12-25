@@ -16,19 +16,13 @@ var teachersRouter = require("./routes/teacher");
 var app = express();
 
 // MongoDB Connection
-// const uri =
-//   "mongodb+srv://amnakamran139:vgDCvSZfo8XtnrAB@cluster0.qg8esqx.mongodb.net/?retryWrites=true&w=majority";
-// mongoose
-//   .connect(uri)
-//   .then(() => console.log("Connected to MongoDB"))
-//   .catch((err) => console.warn("An error occurred", err));
-
 const uri =
-  "mongodb://127.0.0.1:27017/assignment2LMS";
+  "mongodb+srv://amnakamran139:vgDCvSZfo8XtnrAB@cluster0.qg8esqx.mongodb.net/?retryWrites=true&w=majority";
 mongoose
   .connect(uri)
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.warn("An error occurred", err));
+
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
