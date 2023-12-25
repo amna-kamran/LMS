@@ -8,7 +8,7 @@ var mongoose = require("mongoose"); // Add mongoose
 //define the routers
 //e.g
 // var indexRouter = require("./routes/index");
-// var usersRouter = require("./routes/users");
+var adminRouter = require("./routes/admin");
 
 var app = express();
 
@@ -33,7 +33,7 @@ app.use(express.static(path.join(__dirname, "public")));
 //define the usage of the routers
 //e.g
 // app.use("/", indexRouter);
-// app.use("/users", usersRouter);
+app.use("/admin", adminRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -49,7 +49,7 @@ app.use(function (err, req, res, next) {
 });
 
 // Server Listening
-const PORT = 3000;
+const PORT = 8000;
 app.listen(PORT, () =>
   console.log(`Server is Successfully Running on ${PORT}`)
 );
