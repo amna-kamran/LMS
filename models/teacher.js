@@ -20,9 +20,44 @@ const teacherSchema = new mongoose.Schema({
     classes: {
         type: [String],
         required: true,
-    }
+    },
+    quizzes: [
+        {
+            id: {
+                type: mongoose.Types.ObjectId,
+                ref: 'Quiz',
+            },
+            title: {
+                type: String,
+                required: true,
+            },
+        },
+    ],
+    assignments: [
+        {
+            id: {
+                type: mongoose.Types.ObjectId,
+                ref: 'Assignment',
+            },
+            title: {
+                type: String,
+                required: true,
+            },
+        },
+    ],
+    materials: [
+        {
+            id: {
+                type: mongoose.Types.ObjectId,
+                ref: 'Material',
+            },
+            title: {
+                type: String,
+                required: true,
+            },
+        },
+    ],
 });
 
 const Teacher = mongoose.model('Teacher', teacherSchema);
 module.exports = Teacher;
-

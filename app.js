@@ -9,6 +9,7 @@ var mongoose = require("mongoose"); // Add mongoose
 //e.g
 // var indexRouter = require("./routes/index");
 // var usersRouter = require("./routes/users");
+var studentRouter = require("./routes/student");
 
 var teachersRouter = require("./routes/teacher");
 
@@ -21,6 +22,7 @@ mongoose
   .connect(uri)
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.warn("An error occurred", err));
+
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -36,6 +38,9 @@ app.use(express.static(path.join(__dirname, "public")));
 //e.g
 // app.use("/", indexRouter);
 // app.use("/users", usersRouter);
+
+app.use("/student", studentRouter);
+
 app.use("/teachers", teachersRouter);
 
 // catch 404 and forward to error handler
