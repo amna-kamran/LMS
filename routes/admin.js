@@ -1,25 +1,43 @@
 var express = require("express");
 var router = express.Router();
-var Student = require("../models/student")
-var Teacher = require("../models/teacher")
 
-router.get('/get-all-students', function(req, res, next) {
-    Student.find().exec().then(result => {
-        res.json(result)
-    }).catch(e => {
-        res.status(400)
-        res.json(e)
-    })
-});
+const {
+    getAllStudents,
+    getStudentById,
+    createStudent,
+    updateStudentById,
+    deleteStudentById,
+    getAllCourses,
+    getCourseByID,
+    createCourse,
+    updateCourseById,
+    deleteCourseById
+} = require("../controllers/admin");
 
-router.get('/get-student/:id', function(req, res, next) {
-    Student.find().exec().then(result => {
-        res.json(result)
-    }).catch(e => {
-        res.status(400)
-        res.json(e)
-    })
-});
+router.get('/student', getAllStudents);
+
+router.get('/student/:id', getStudentById);
+
+router.post('/student', createStudent);
+
+
+router.put('/student/:id', updateStudentById);
+
+router.delete('/student/:id', deleteStudentById);
+
+
+
+// Courses
+router.get('/courses', getAllCourses);
+
+router.get('/courses/:id', getCourseByID);
+
+router.post('/courses', createCourse);
+
+
+router.put('/courses/:id', updateCourseById);
+
+router.delete('/courses/:id', deleteCourseById);
 
 
 

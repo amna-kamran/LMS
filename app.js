@@ -20,6 +20,7 @@ mongoose
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.warn("An error occurred", err));
 
+
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
