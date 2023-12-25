@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const resultController = require("../controllers/resultController");
+const resultController = require("../controllers/result");
 
 // Route to get all results
 router.get("/results", resultController.getAllResults);

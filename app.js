@@ -4,14 +4,19 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var mongoose = require("mongoose"); // Add mongoose
+const resultRoutes = require("./routes/result.js");
+const materialRoutes = require("./routes/material.js");
 
 //define the routers
 //e.g
 // var indexRouter = require("./routes/index");
 // var usersRouter = require("./routes/users");
+app.use("/", require("./routes/index"));
 var studentRouter = require("./routes/student");
 
 var teachersRouter = require("./routes/teacher");
+app.use("/results", resultRoutes);
+app.use("/materials", materialRoutes);
 
 var app = express();
 
@@ -22,7 +27,6 @@ mongoose
   .connect(uri)
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.warn("An error occurred", err));
-
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
