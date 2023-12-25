@@ -9,12 +9,20 @@ var mongoose = require("mongoose"); // Add mongoose
 //e.g
 // var indexRouter = require("./routes/index");
 // var usersRouter = require("./routes/users");
+var studentRouter = require("./routes/student");
 
 var app = express();
 
 // MongoDB Connection
+// const uri =
+//   "mongodb+srv://amnakamran139:vgDCvSZfo8XtnrAB@cluster0.qg8esqx.mongodb.net/?retryWrites=true&w=majority";
+// mongoose
+//   .connect(uri)
+//   .then(() => console.log("Connected to MongoDB"))
+//   .catch((err) => console.warn("An error occurred", err));
+
 const uri =
-  "mongodb+srv://amnakamran139:vgDCvSZfo8XtnrAB@cluster0.qg8esqx.mongodb.net/?retryWrites=true&w=majority";
+  "mongodb://127.0.0.1:27017/assignment2LMS";
 mongoose
   .connect(uri)
   .then(() => console.log("Connected to MongoDB"))
@@ -34,6 +42,7 @@ app.use(express.static(path.join(__dirname, "public")));
 //e.g
 // app.use("/", indexRouter);
 // app.use("/users", usersRouter);
+app.use("/student", studentRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
