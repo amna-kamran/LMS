@@ -10,11 +10,10 @@ var mongoose = require("mongoose"); // Add mongoose
 // var indexRouter = require("./routes/index");
 // var usersRouter = require("./routes/users");
 var studentRouter = require("./routes/student");
-
 var teachersRouter = require("./routes/teacher");
 const resultRoutes = require("./routes/result.js");
 const materialRoutes = require("./routes/material.js");
-
+const adminRouter = require("./routes/admin");
 var app = express();
 
 // MongoDB Connection
@@ -46,7 +45,7 @@ app.use("/teachers", teachersRouter);
 
 app.use("/results", resultRoutes);
 app.use("/materials", materialRoutes);
-
+app.use("/admin", adminRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
