@@ -1,4 +1,4 @@
-const Result = require("../models/resultModel");
+const Result = require("../models/result");
 
 exports.getAllResults = async (req, res) => {
   try {
