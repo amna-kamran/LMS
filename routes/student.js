@@ -3,6 +3,14 @@ var router = express.Router();
 
 const studentController = require("../controllers/student");
 
+router.get('/',studentController.dashboard);
+router.post("/viewQuiz", studentController.viewQuiz);
+router.get("/attemptquiz/:regNo", studentController.attemptQuiz);
+router.get("/viewAssignment", studentController.viewAssignment);
+router.post("/submitassignment/:regNo", studentController.submitAssignment);
+router.get("/viewMaterial", studentController.viewMaterial);
+router.get('/material/:id',studentController.downloadMaterial);
+router.get("/viewGrade", studentController.viewGrade);
 router.get('/result',studentController.viewMarks);
 
 module.exports = router;
