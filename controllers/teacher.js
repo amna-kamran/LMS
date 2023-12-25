@@ -1,4 +1,9 @@
 const Quiz = require("../models/quiz");
+const Teacher = require('../models/teacher');
+const Course = require('../models/course');
+const Assignment = require('../models/assignment');
+
+
 
 module.exports.addQuiz = (req, res, next) => {
   const createdBy = req.body.createdBy; // Assuming createdBy contains the teacher ID
@@ -136,3 +141,76 @@ module.exports.updateMarksController = (req, res, next) => {
     }
   );
 };
+
+
+const viewSubmittedAssignments = async (teacherId) => {
+  try {
+    const courses = await Course.find({ "teacher.id": teacherId });
+    return { message: 'View submitted assignments', courses };
+  } catch (err) {
+    throw new Error(err.message);
+  }
+};
+
+const addAssignment = async (courseId, assignmentDetails) => {
+  try {
+    const course = await Course.findById(courseId);
+    if (!course) {
+      throw new Error('Course not found');
+    }
+
+    const assignment = new Assignment(assignmentDetails); 
+    course.assignments.push(assignment);
+    await course.save();
+
+    return { message: 'Assignment added successfully', assignment };
+  } catch (err) {
+    throw new Error(err.message);
+  }
+};
+
+const downloadSubmittedAssignments = async (assignmentId) => {
+  try {
+    const assignment = await Assignment.findById(assignmentId);
+    if (!assignment) {
+      throw new Error('Assignment not found');
+    }
+
+    return { message: 'Downloaded submitted assignments', assignment };
+  } catch (err) {
+    throw new Error(err.message);
+  }
+};
+
+const deleteAssignment = async (assignmentId) => {
+  try {
+    return { message: 'Assignment deleted successfully', assignmentId };
+  } catch (err) {
+    throw new Error(err.message);
+  }
+};
+
+const viewMaterial = async (my_Material) => {
+  try {
+    return { message: 'Material added successfully', my_Material};
+  } catch (err) {
+    throw new Error(err.message);
+  }
+};
+
+const addMaterial = async (material) => {
+  try {
+    return { message: 'Material added successfully', material};
+  } catch (err) {
+    throw new Error(err.message);
+  }
+};
+
+const deleteMaterial = async (materialId) => {
+  try {
+    return { message: 'Material deleted successfully', materialId };
+  } catch (err) {
+    throw new Error(err.message);
+  }
+};
+                 
