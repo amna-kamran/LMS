@@ -8,12 +8,10 @@ var mongoose = require("mongoose"); // Add mongoose
 //define the routers
 //e.g
 // var indexRouter = require("./routes/index");
-// var usersRouter = require("./routes/users");
-var studentRouter = require("./routes/student");
+var usersRouter = require("./routes/users");
+var headRouter = require("./routes/head");
 var teachersRouter = require("./routes/teacher");
-const resultRoutes = require("./routes/result.js");
-const materialRoutes = require("./routes/material.js");
-const adminRouter = require("./routes/admin");
+
 var app = express();
 
 // MongoDB Connection
@@ -37,15 +35,10 @@ app.use(express.static(path.join(__dirname, "public")));
 //define the usage of the routers
 //e.g
 // app.use("/", indexRouter);
-// app.use("/users", usersRouter);
-
-app.use("/student", studentRouter);
-
+app.use("/users", usersRouter);
 app.use("/teachers", teachersRouter);
+app.use("/head", headRouter);
 
-app.use("/results", resultRoutes);
-app.use("/materials", materialRoutes);
-app.use("/admin", adminRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
